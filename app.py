@@ -12,7 +12,6 @@ colonnes = artefacts["colonnes"]
 valeurs_defaut = artefacts["valeurs_defaut"]
 exemples = artefacts["exemples"]
 noms_classes = artefacts["noms_classes"]
-scaler = StandardScaler()
 
 
 def predire_classe(nouvelle_graine):
