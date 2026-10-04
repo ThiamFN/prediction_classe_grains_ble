@@ -1,7 +1,7 @@
 import numpy as np
 import joblib
 import streamlit as st
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import normalize
 
 # Charger le modèle sauvegardé
 artefacts = joblib.load("modele_dbscan.joblib")
@@ -17,7 +17,7 @@ scaler = StandardScaler()
 
 def predire_classe(nouvelle_graine):
     graine = np.array(nouvelle_graine, dtype=float).reshape(1, -1)
-    graine = scaler.fit_transform(graine)
+    graine = normalize(graine)
     distances = np.linalg.norm(points_coeur - client, axis=1)
     plus_proche = distances.argmin()
     if distances[plus_proche] <= eps:
