@@ -17,7 +17,7 @@ st.set_page_config(
 )
 
 DESCRIPTION = (
-    "Ce modèle de clustering (KMeans) regroupe les graines de blé selon leurs "
+    "Ce modèle de clustering regroupe les graines de blé selon leurs "
     "caractéristiques physiques (aire, périmètre, compacité, dimensions du noyau...)."
 )
 
