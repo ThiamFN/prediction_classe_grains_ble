@@ -14,9 +14,9 @@ exemples = artefacts["exemples"]
 noms_classes = artefacts["noms_classes"]
 
 
-def predire_classe(nouveau_client):
-    client = np.array(nouveau_client, dtype=float).reshape(1, -1)
-    client = normalize(client)
+def predire_classe(nouvelle_graine):
+    graine = np.array(nouvelle_graine, dtype=float).reshape(1, -1)
+    graine = normalize(client)
     distances = np.linalg.norm(points_coeur - client, axis=1)
     plus_proche = distances.argmin()
     if distances[plus_proche] <= eps:
@@ -26,10 +26,10 @@ def predire_classe(nouveau_client):
 
 
 # Configuration de la page
-st.set_page_config(page_title="Segmentation des clients", page_icon="📊")
+st.set_page_config(page_title="Segmentation des graines de blé", page_icon="🌾")
 
-st.title("Segmentation des clients - modèle DBSCAN")
-st.write("Saisissez les caractéristiques d'un client pour connaître sa classe.")
+st.title("🌾 Segmentation des graines de blé - modèle DBSCAN")
+st.write("Saisissez les caractéristiques d'une graine pour connaître sa classe.")
 
 # Choix d'un exemple (équivalent des examples de Gradio)
 choix = st.selectbox(
@@ -55,6 +55,6 @@ if st.button("Prédire la classe"):
     classe = predire_classe(valeurs)
 
     if classe == -1:
-        st.warning("Client atypique (anomalie) : il ne ressemble à aucune classe.")
+        st.warning("Cette graine est considérée comme atypique et ne correspond à aucun cluster.")
     else:
-        st.success("Ce client appartient à la " + noms_classes[classe])
+        st.success("Cette graine appartient à la " + noms_classes[classe])
