@@ -17,7 +17,7 @@ noms_classes = artefacts["noms_classes"]
 def predire_classe(nouvelle_graine):
     graine = np.array(nouvelle_graine, dtype=float).reshape(1, -1)
     graine = normalize(graine)
-    distances = np.linalg.norm(points_coeur - client, axis=1)
+    distances = np.linalg.norm(points_coeur - graine, axis=1)
     plus_proche = distances.argmin()
     if distances[plus_proche] <= eps:
         return labels_coeur[plus_proche]
