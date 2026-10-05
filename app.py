@@ -14,15 +14,7 @@ valeurs_defaut = artefacts["valeurs_defaut"]
 exemples = artefacts["exemples"]
 noms_classes = artefacts["noms_classes"]
 
-URL_CSV = "https://raw.githubusercontent.com/ThiamFN/prediction_classe_grains_ble/main/wheat_seeds_dataset.csv"
-
-
-@st.cache_resource
-def construire_scaler():
-    df = pd.read_csv(URL_CSV)
-    return StandardScaler().fit(df[list(colonnes)])
-
-scaler = construire_scaler()
+scaler = joblib.load("scaler.joblib")
 
 def predire_classe(nouvelle_graine):
     graine = np.array(nouvelle_graine, dtype=float).reshape(1, -1)
