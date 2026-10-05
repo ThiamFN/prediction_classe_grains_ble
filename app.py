@@ -1,7 +1,7 @@
 import numpy as np
 import joblib
 import streamlit as st
-from sklearn.preprocessing import normalize
+from sklearn.preprocessing import StandardScaler
 
 # Charger le modèle sauvegardé
 artefacts = joblib.load("modele_dbscan.joblib")
@@ -13,10 +13,17 @@ valeurs_defaut = artefacts["valeurs_defaut"]
 exemples = artefacts["exemples"]
 noms_classes = artefacts["noms_classes"]
 
+@st.cache_resource
+def construire_scaler():
+    df = pd.read_csv(DOSSIER / "wheat_seeds_dataset.csv")   # adapte le nom / séparateur
+    return StandardScaler().fit(df[list(colonnes)])
+
+
+scaler = construire_scaler()
 
 def predire_classe(nouvelle_graine):
     graine = np.array(nouvelle_graine, dtype=float).reshape(1, -1)
-    graine = normalize(graine)
+    graine = scaler.transform(graine)
     distances = np.linalg.norm(points_coeur - graine, axis=1)
     plus_proche = distances.argmin()
     if distances[plus_proche] <= eps:
