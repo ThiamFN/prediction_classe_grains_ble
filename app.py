@@ -2,6 +2,7 @@ import numpy as np
 import joblib
 import streamlit as st
 from sklearn.preprocessing import StandardScaler
+from pathlib import Path
 
 # Charger le modèle sauvegardé
 artefacts = joblib.load("modele_dbscan.joblib")
