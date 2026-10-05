@@ -14,26 +14,12 @@ valeurs_defaut = artefacts["valeurs_defaut"]
 exemples = artefacts["exemples"]
 noms_classes = artefacts["noms_classes"]
 
+URL_CSV = "https://raw.githubusercontent.com/ton-compte/prediction_classe_grains_ble/main/wheat_seeds_dataset.csv"
+
+
 @st.cache_resource
 def construire_scaler():
-    chemin = DOSSIER / "wheat_seeds_dataset.csv"
-    st.write("Dossier :", str(DOSSIER))
-    st.write("Fichiers présents :", sorted(p.name for p in DOSSIER.iterdir()))
-
-    try:
-        df = pd.read_csv(chemin, sep=None, engine="python")
-    except Exception as e:
-        st.error(f"{type(e).__name__} : {e}")
-        st.stop()
-
-    st.write("Colonnes du CSV :", df.columns.tolist())
-    st.write("Colonnes attendues :", list(colonnes))
-
-    manquantes = [c for c in colonnes if c not in df.columns]
-    if manquantes:
-        st.error("Colonnes absentes du CSV : " + str(manquantes))
-        st.stop()
-
+    df = pd.read_csv(URL_CSV)
     return StandardScaler().fit(df[list(colonnes)])
 
 scaler = construire_scaler()
