@@ -16,7 +16,7 @@ noms_classes = artefacts["noms_classes"]
 
 @st.cache_resource
 def construire_scaler():
-    df = pd.read_csv(DOSSIER / "wheat_seeds_dataset.csv.csv")   # adapte le nom / séparateur
+    df = pd.read_csv(DOSSIER / "wheat_seeds_dataset.csv")   # adapte le nom / séparateur
     return StandardScaler().fit(df[list(colonnes)])
 
 
