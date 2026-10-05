@@ -14,7 +14,7 @@ valeurs_defaut = artefacts["valeurs_defaut"]
 exemples = artefacts["exemples"]
 noms_classes = artefacts["noms_classes"]
 
-URL_CSV = "https://raw.githubusercontent.com/ton-compte/prediction_classe_grains_ble/main/wheat_seeds_dataset.csv"
+URL_CSV = "https://raw.githubusercontent.com/ThiamFN/prediction_classe_grains_ble/main/wheat_seeds_dataset.csv"
 
 
 @st.cache_resource
